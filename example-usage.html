@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Notific html example</title>
+	<link rel="stylesheet" href="/epub-from-element.css?v0.2" crossorigin="anonymous" integrity="sha256-3dujCJSgkpcb6zbg2ZUAG6wT3b9AOQe/QqHgqWP6Jzo=">
+</head>
+
+<body>
+
+	<article>
+		<h1>Epub from element v 0.2</h1>
+		<p><strong>Creates ePub export for e-readers from selected html element(s)</strong> like html element (<code>article</code>, <code>div</code>, … , or whole <code>body</code> if you want)</p>
+		<p>Just vanilla javascript. Example style (.css) and html example included in repo.</p>
+		<strong>Whats happening?</strong>
+		<p>This readme is also a example. Look at the two buttons under this text:</p>
+		<br>
+		<button id="print" disabled>Print article</button>
+		<button id="epub" title="Export into ePub format (for eReaders like Kindle, Kobo, Nook, …)" disabled>Export into ePub</button>
+		<br>
+		<br>
+		<p>Print function just simple release the browser's print dialog. And ePub button creates ePub request (POST data) and send it into server side endpoint (also part of this example). Endpoint creates ePub file, returns it into script and also store it into folder. So next times returns already created ePub from cache.</p>
+		<h2>Code looks like:</h2>
+		<pre><code class="language-html">
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;print&quot;</span> <span class="hljs-attr">disabled</span>&gt;</span>Print article<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;epub&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Export into ePub format (for eReaders like Kindle, Kobo, Nook, …)&quot;</span> <span class="hljs-attr">disabled</span>&gt;</span>Export into ePub<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;epub-response&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/json&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;epub-from-element-settings&quot;</span>&gt;</span><span class="javascript">
+	{
+		<span class="hljs-string">&quot;modulesImportPath&quot;</span>: <span class="hljs-string">&quot;/modules&quot;</span>,
+		<span class="hljs-string">&quot;exportElementQuerySelectors&quot;</span>: [ <span class="hljs-string">&quot;body&quot;</span> ],
+		<span class="hljs-string">&quot;ePubServerSideEndpoints&quot;</span>: [ <span class="hljs-string">&quot;/endpoint-example/php/index.php&quot;</span> ],
+		<span class="hljs-string">&quot;toggleEPubElementId&quot;</span>: <span class="hljs-string">&quot;epub&quot;</span>,
+		<span class="hljs-string">&quot;togglePrintElementId&quot;</span>: <span class="hljs-string">&quot;print&quot;</span>,
+		<span class="hljs-string">&quot;resultsElementId&quot;</span>: <span class="hljs-string">&quot;epub-response&quot;</span>,
+		<span class="hljs-string">&quot;ePubTempPathPrefix&quot;</span>: <span class="hljs-string">&quot;https://domain.tld/epubs/&quot;</span>,
+		<span class="hljs-string">&quot;serverSideHeaders&quot;</span>: {
+			<span class="hljs-string">&quot;creator&quot;</span>: <span class="hljs-string">&quot;Me :)&quot;</span>
+		},
+		<span class="hljs-string">&quot;texts&quot;</span>: {
+			<span class="hljs-string">&quot;closeButtonTitle&quot;</span>: <span class="hljs-string">&quot;Close popup with ePub result&quot;</span>
+		}
+	}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/modules/dialogicPolyfill.mjs&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">&quot;sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0=&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/epub-from-element.mjs?v=0.2&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">&quot;sha256-ZDlCa5wROr98OYWcaopb2heJ8WXQxW2tAtrPh/7K8lw=&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		</code></pre>
+		<h3>It works even with images</h3>
+		<figure>
+			<img src="https://vedator.org/wp-content/uploads/2021/04/004-5-800x445.png" alt="Mars… but where is water?">
+			<figcaption>This image will also be in ePub</figcaption>
+		</figure>
+		<h2>Optional addons</h2>
+		<p>There's also <code>dialog</code> polyfill, because <code>dialog</code> element function it's currently not supported in Firefox. After time and incoming support you can delete script from origin <code>/modules/dialogicPolyfill.mjs</code>.</p>
+		<h2>Feature requests</h2>
+		<p>Currently in Chrome ePub file cannot be shared (it works with all picture formats, mp3, pdf… but not ePub). So share button must share link to file but not file itself :( . Maybe in future.</p>
+		<p>Work without server side. This whole script can be maid only in frontend, so next times.</p>
+		<h3 id="possible-problems">Possible problems?</h3>
+		<p>The mjs extension must have the correct mime type set to <code>text/javascript</code>, if it is too laborious, rename the suffix from <code>.mjs</code> to <code>.js</code>.</p>
+		<h3 id="services">Services</h3>
+		<p>Unpkg: <a href="https://unpkg.com/epub-from-element">https://unpkg.com/epub-from-element</a></p>
+		<p>NPM: <a href="https://www.npmjs.com/package/epub-from-element">https://www.npmjs.com/package/epub-from-element</a></p>
+		<h3 id="licence">Licence</h3>
+		<p><strong>CC BY-SA 4.0</strong></p>
+		<p>This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/4.0/">http://creativecommons.org/licenses/by-sa/4.0/</a> or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.</p>
+		<hr>
+		<p>more info at <a href="https://iiic.dev/epub-from-element">https://iiic.dev/epub-from-element</a></p>
+	</article>
+	<dialog id="epub-response"></dialog>
+	<script type="text/json" id="epub-from-element-settings">
+		{
+			"modulesImportPath": "/modules",
+			"exportElementQuerySelectors": [ "body" ],
+			"ePubServerSideEndpoints": [ "/endpoint-example/php/index.php" ],
+			"toggleEPubElementId": "epub",
+			"togglePrintElementId": "print",
+			"resultsElementId": "epub-response",
+			"ePubTempPathPrefix": "https://domain.tld/epubs/",
+			"serverSideHeaders": {
+				"creator": "Me :)"
+			},
+			"texts": {
+				"closeButtonTitle": "Close popup with ePub result"
+			}
+		}
+	</script>
+	<script type="module" src="/modules/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0="></script>
+	<script type="module" src="/epub-from-element.mjs?v=0.2" crossorigin="anonymous" integrity="sha256-ZDlCa5wROr98OYWcaopb2heJ8WXQxW2tAtrPh/7K8lw="></script>

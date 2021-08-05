@@ -14,29 +14,28 @@ Just vanilla javascript. Example style (.css) and html example, and server side 
 Polyfill is in single javascript module file `epub-from-element.mjs`. And server side endpoint (example in PHP). Include it into your site like this:
 
 ``` html
-	<button id="print" disabled>Print article</button>
-	<button id="epub" title="Export into ePub format (for eReaders like Kindle, Kobo, Nook, …)" disabled>Export into ePub</button>
-	<dialog id="epub-response"></dialog>
-	<script type="text/json" id="epub-from-element-settings">
-		{
-			"modulesImportPath": "/modules",
-			"exportElementQuerySelectors": [ "body" ],
-			"ePubServerSideEndpoints": [ "/endpoint-example/php/index.php" ],
-			"toggleEPubElementId": "epub",
-			"togglePrintElementId": "print",
-			"resultsElementId": "epub-response",
-			"ePubTempPathPrefix": "https://domain.tld/epubs/",
-			"serverSideHeaders": {
-				"creator": "Me :)"
-			},
-			"texts": {
-				"closeButtonTitle": "Close popup with ePub result"
-			}
+<button id="print" disabled>Print article</button>
+<button id="epub" title="Export into ePub format (for eReaders like Kindle, Kobo, Nook, …)" disabled>Export into ePub</button>
+<dialog id="epub-response"></dialog>
+<script type="text/json" id="epub-from-element-settings">
+	{
+		"modulesImportPath": "/modules",
+		"exportElementQuerySelectors": [ "body" ],
+		"ePubServerSideEndpoints": [ "/endpoint-example/php/index.php" ],
+		"toggleEPubElementId": "epub",
+		"togglePrintElementId": "print",
+		"resultsElementId": "epub-response",
+		"ePubTempPathPrefix": "https://domain.tld/epubs/",
+		"serverSideHeaders": {
+			"creator": "Me :)"
+		},
+		"texts": {
+			"closeButtonTitle": "Close popup with ePub result"
 		}
-	</script>
-	<script type="module" src="/modules/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0="></script>
-	<script type="module" src="/epub-from-element.mjs?v=0.2" crossorigin="anonymous" integrity="sha256-ZDlCa5wROr98OYWcaopb2heJ8WXQxW2tAtrPh/7K8lw="></script>
-
+	}
+</script>
+<script type="module" src="/modules/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0="></script>
+<script type="module" src="/epub-from-element.mjs?v=0.2" crossorigin="anonymous" integrity="sha256-ZDlCa5wROr98OYWcaopb2heJ8WXQxW2tAtrPh/7K8lw="></script>
 ```
 
 Server side example is in folder `endpoint-example/php` it's using `TPEpubCreator` library from *Luiz Otávio Miranda* ( Github repo : https://github.com/luizomf/php-epub-creator ) not included in this repo.
