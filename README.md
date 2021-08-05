@@ -5,11 +5,11 @@ like html element (<code>article</code>, <code>div</code>, … , or whole <code>
 
 Just vanilla javascript. Example style (.css) and html example, and server side endpoint example included in repo.
 
-# What's new in version 0.2 ?
+## What's new in version 0.2 ?
 - script settings by json file
 - automatically include images into ePub
 
-# Use
+## Use
 
 Polyfill is in single javascript module file `epub-from-element.mjs`. And server side endpoint (example in PHP). Include it into your site like this:
 
@@ -46,22 +46,22 @@ Other files like `example-usage.html` and `epub-from-element.css` are there to h
 
 Print function just simple release the browser's print dialog. And ePub button creates ePub request (POST data) and send it into server side endpoint (also part of this example). Endpoint creates ePub file, returns it into script and also store it into folder. So next times returns already created ePub from cache.
 
-# Feature requests
+## Feature requests
 
 - Currently in Chrome ePub file cannot be shared (it works with all picture formats, mp3, pdf… but not ePub). So share button must share link to file but not file itself :( . Maybe in future.
 - Work without server side. This whole script can be maid only in frontend, so next times.
 
-# Possible problems?
+### Possible problems?
 
 The mjs extension must have the correct mime type set to `text/javascript`, if it is too laborious, rename the suffix from `.mjs` to `.js`.
 
-# Services
+## Services
 
 Unpkg: https://unpkg.com/epub-from-element
 
 NPM: https://www.npmjs.com/package/epub-from-element
 
-# Licence
+## Licence
 
 **CC BY-SA 4.0**
 
